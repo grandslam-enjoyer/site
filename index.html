@@ -108,7 +108,184 @@ document.addEventListener("DOMContentLoaded", function () {
 /*# sourceURL=core-block-supports-inline-css */
 </style>
 
-<script src="js/wp-emoji-release.min.js" defer=""></script></head>
+<script src="js/wp-emoji-release.min.js" defer=""></script>
+<style>
+@media (max-width: 767px) {
+  .site-header .site-header-top {
+    display: none !important;
+  }
+
+  .site-header,
+  .site-header .wrap,
+  .site-header-bottom {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .site-header-bottom {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom)) !important;
+    margin: 0 !important;
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    background: rgba(18, 18, 18, 0.98) !important;
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.2) !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .site-header-tickets-slider,
+  .site-header-tickets-link {
+    width: 100% !important;
+    margin: 0 !important;
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    z-index: auto !important;
+  }
+
+  .site-header .site-header-bottom,
+  .site-header .site-header-top {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    z-index: auto !important;
+  }
+
+  .site-header .site-header-bottom {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 1200 !important;
+  }
+
+  .site-header-tickets-link {
+    display: flex !important;
+    justify-content: flex-start !important;
+  }
+
+  .ticket-slider-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.7rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .site-header-tickets-link .button {
+    margin: 0 !important;
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .site-content,
+  #content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 12rem !important;
+  }
+
+  .entry-content.main-content {
+    margin-top: 0 !important;
+  }
+
+  .entry-content.main-content img[src="images/b-2026.png"] {
+    width: 180px !important;
+    height: auto !important;
+  }
+
+  .partner-ticker {
+    padding: 0.75rem 0 !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .partner-ticker .ticker-container {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.5rem 0.75rem !important;
+    animation: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    left: 0 !important;
+  }
+
+  .partner-ticker .partner-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+    margin: 0.15rem 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .partner-ticker .partner-group .partner {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 1 auto !important;
+    max-width: 100% !important;
+    width: auto !important;
+  }
+
+  .partner-ticker .partner-group .partner img {
+    margin: 0 !important;
+    max-width: 68px !important;
+    max-height: 36px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+  .ticket-slider {
+    position: relative !important;
+    min-height: 4.2rem !important;
+  }
+  .ticket-slide {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
+    transform: translateY(16px) !important;
+    pointer-events: none !important;
+  }
+  .ticket-slide.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  .ticket-slide-inner {
+    min-height: 4.2rem !important;
+  }
+}
+</style>
+</head>
 
 
 
@@ -142,27 +319,50 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="site-header-bottom">
                   <div class="site-header-tickets-slider">
               <div class="ticket-slider-container" aria-hidden="true" tabindex="-1">
+
     <p>Nukkumapaikat</p>
-                <p>PÄÄMÖKKI <span class="">96%</span></p>
+  
     <div class="slick-slider ticket-slider">
+      
                 <div class="ticket-slide">
             <div class="ticket-slide-inner">
               <div class="bar"><span class="bar-red" style="--bar-width: 96%"></span></div>
-              <p>VITUN KUUMA SAUNAMÖKKI <span class="">14%</span></p>
+              <p>Päämökki <span class="">96%</span></p>
             </div>
           </div>
         
                   <div class="ticket-slide">
             <div class="ticket-slide-inner">
               <div class="bar"><span class="bar-green" style="--bar-width: 14%"></span></div>
-              <p>ETUPIHA<span class="">5%</span></p>
+              <p>VITUN KUUMA SAUNAMÖKKI <span class="">14%</span></p>
             </div>
           </div>
-        
+      
                   <div class="ticket-slide">
             <div class="ticket-slide-inner" SIZE>
               <div class="bar"><span class="bar-green" style="--bar-width: 5%"></span></div>
+              <p>ETUPIHA<span class=""> 5%</span></p>
+            </div>
+          </div>
 
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-yellow" style="--bar-width: 62%"></span></div>
+              <p>OPELIKS <span class="">62%</span></p>
+            </div>
+          </div>
+
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-red" style="--bar-width: 100%"></span></div>
+              <p>vepen viekku <span class="">100%</span></p>
+            </div>
+          </div>
+
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-yellow" style="--bar-width: 62%"></span></div>
+              <p>jos luet TÄMÄN HEITÄ SÄKKI <span class="">1%</span></p>
             </div>
           </div>
         
@@ -170,9 +370,16 @@ document.addEventListener("DOMContentLoaded", function () {
            </div>
             </div>
               <div class="site-header-tickets-link">
-            <a href="https://www.google.com/maps/place/Pekanrannantie+67,+52100+Mikkeli/@61.5657136,27.5701071,478m/data=!3m2!1e3!4b1!4m6!3m5!1s0x469a9d6cb020cabd:0xd25ad9ac4447c7fc!8m2!3d61.5657136!4d27.572682!16s%2Fg%2F11trgvk1x8?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" class="button is-style-gradient" role="button" target="_self">SIJAINTI</a>          </div>
+            <a href="https://www.google.com/maps/place/Pekanrannantie+67,+52100+Mikkeli/@61.5657136,27.5701071,478m/data=!3m2!1e3!4b1!4m6!3m5!1s0x469a9d6cb020cabd:0xd25ad9ac4447c7fc!8m2!3d61.5657136!4d27.572682!16s%2Fg%2F11trgvk1x8?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" class="button is-style-gradient" role="button" target="_self">SIJAINTI</a>
+          <a href="images/map.png" class="button is-style-gradient" role="button" target="_self">KARTTA</a>
+          <a href="" class="button is-style-gradient" role="button" target="_self">AIKATAULU</a>
+          <a href="games.html" class="button is-style-gradient" role="button" target="_self">???</a>
+          </div>
+            
                 <div class="menu-container">
+                  
             <span class="screen-reader-text">Menu</span>
+            
           </button>
           <div id="site-header-menu" class="site-header-menu">
             <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Main menu">
@@ -227,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div id="countdown" data-time="2026-08-07T13:00:00+03:00">
         <div>
           <span class="days time"></span>
-          <span class="label">Päivää</span>
+          <span class="label">PÄIVÄÄ</span>
         </div>
         <div>
           <span class="hours time"></span>
@@ -251,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="ticker-container">
                                                 <div class="partner-group">
-              <h4>Main partners:</h4>
+              <h4>Partners:</h4>
                                               <div class="partner">
                   <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqnZK9T5oa6eo2xMuR-qTLUPOuGKBTn5enlbr9QrEo_g&s=10">
                     <img decoding="async" width="100" height="43" src="images/anttola.png" class="logo" alt="ANTTOLA" sizes="(max-width: 100px) 100vw, 100px">                  </a>
@@ -269,13 +476,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img loading="lazy" decoding="async" width="150" height="150" src="images/agassi.jpg" class="logo" alt="AGASSI"  >                  </a>
                 </div>
 
-                <div class="partner">
+                
+                          </div>
+                                        <div class="partner-group">
+              <h4></h4>
+              <div class="partner">
                   <a href="https://www.leafly.com/strains/purple-haze">
                     <img decoding="async" width="100" height="43" src="images/hazenugu.jpg" class="logo" alt="BEATBOX" sizes="(max-width: 100px) 100vw, 100px">                  </a>
                 </div>
-                          </div>
-                                        <div class="partner-group">
-              <h4>Partners:</h4>
                                               <div class="partner">
                   <a href="https://st3.depositphotos.com/1252160/13042/i/950/depositphotos_130429282-stock-photo-fat-man-raised-his-hands.jpg">
                     <img loading="lazy" decoding="async" width="100" height="100" src="images/atria.png" class="logo" alt="BIG PRO" sizes="auto, (max-width: 80px) 100vw, 80px">                  </a>
@@ -374,7 +582,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     <header class="entry-header">
-              <h3 class="entry-title">kivikylän huiluntuhti</h3>
+              <h3 class="entry-title">kivikylÃ¤n huiluntuhti</h3>
           </header><!-- .entry-header -->
 
     
@@ -485,4 +693,18 @@ var screenReaderText = {"expand":"Open submenu","collapse":"Close submenu"};
 
 
 
-</body></html>
+<script>
+  (function() {
+    const slides = Array.from(document.querySelectorAll('.ticket-slider .ticket-slide'));
+    if (!slides.length) return;
+    let current = 0;
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === 0);
+    });
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000);
+  })();
+</script></body></html>
