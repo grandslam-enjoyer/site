@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const hoursEl = countdown.querySelector(".hours");
   const minutesEl = countdown.querySelector(".minutes");
   const secondsEl = countdown.querySelector(".seconds");
+  
 
   function update() {
     const now = new Date().getTime();
@@ -373,7 +374,92 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="https://www.google.com/maps/place/Pekanrannantie+67,+52100+Mikkeli/@61.5657136,27.5701071,478m/data=!3m2!1e3!4b1!4m6!3m5!1s0x469a9d6cb020cabd:0xd25ad9ac4447c7fc!8m2!3d61.5657136!4d27.572682!16s%2Fg%2F11trgvk1x8?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" class="button is-style-gradient" role="button" target="_self">SIJAINTI</a>
           <a href="images/map.png" class="button is-style-gradient" role="button" target="_self">KARTTA</a>
           <a href="" class="button is-style-gradient" role="button" target="_self">AIKATAULU</a>
-          <a href="games.html" class="button is-style-gradient" role="button" target="_self">???</a>
+          <a href="#" id="myButton" class="button is-style-gradient" role="button" target="_self"></a>
+
+          
+<div id="toast1" style="
+  display:none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+">
+  JARRR, MIKÄ LIE TUOLLA HORISONTISSA PURJEHTII... JATKA PAINELEMISTA NIIN EHKÄ SE PALJASTUU!
+</div>
+
+<div id="toast2" style="
+  display:none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+">
+  JARRR, MÄÄRÄTÖN PAINELEMINEN PALJASTAA SALAISUUKSIA! JATKA PAINELEMISTA NIIN EHKÄ SE PALJASTUU!
+</div>
+
+<script>
+  let timesClicked = 0;
+
+  const secretButton = document.getElementById('myButton');
+  const toast1 = document.getElementById('toast1');
+  const toast2 = document.getElementById('toast2');
+
+  function showToast(toast) {
+    toast.style.display = 'block';
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 400);
+    }, 4000);
+  }
+
+
+  secretButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    timesClicked++;
+    secretButton.textContent = timesClicked;
+
+    if (timesClicked === 1) {
+      showToast(toast1);
+    }
+
+        if (timesClicked === 1500) {
+      showToast(toast2);
+    }
+
+
+    if (timesClicked === 3000) {
+      window.open('images/secret.png', '_blank');
+    }
+  });
+</script>
           </div>
             
                 <div class="menu-container">
