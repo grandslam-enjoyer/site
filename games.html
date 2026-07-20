@@ -330,6 +330,7 @@
       <button class="chip-btn" data-amount="25">25</button>
       <button class="chip-btn" data-amount="50">50</button>
       <button class="chip-btn" data-amount="100">100</button>
+      <button id="allInBtn">All In</button>
       <button id="clearBet">Tyhjennä</button>
       <button class="primary" id="dealBtn" disabled>Jaa kortit</button>
     </div>
@@ -380,12 +381,19 @@
     newRoundBtn: document.getElementById('newRoundBtn'),
     clearBet: document.getElementById('clearBet'),
     backButton: document.getElementById('backButton'),
+    allInBtn: document.getElementById('allInBtn'),
   };
 
   function goBack(){
     window.location.href = 'index.html';
   }
     el.backButton.addEventListener('click', goBack);
+
+    el.allInBtn.addEventListener('click', () => {
+  bet = balance;
+  renderHands();
+  updateBetControls();
+    });
 
   function buildDeck(){
     const d = [];
@@ -453,15 +461,16 @@
     el.message.textContent = text;
   }
 
-  function updateBetControls(){
+    function updateBetControls(){
     const chipBtns = document.querySelectorAll('.chip-btn');
     chipBtns.forEach(btn => {
-      const amt = parseInt(btn.dataset.amount, 10);
-      btn.disabled = roundActive || (bet + amt > balance);
+        const amt = parseInt(btn.dataset.amount, 10);
+        btn.disabled = roundActive || (bet + amt > balance);
     });
     el.clearBet.disabled = roundActive || bet === 0;
     el.dealBtn.disabled = roundActive || bet === 0;
-  }
+    el.allInBtn.disabled = roundActive || balance === 0 || bet === balance;
+    }
 
   document.querySelectorAll('.chip-btn').forEach(btn => {
     btn.addEventListener('click', () => {
