@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const hoursEl = countdown.querySelector(".hours");
   const minutesEl = countdown.querySelector(".minutes");
   const secondsEl = countdown.querySelector(".seconds");
+  
 
   function update() {
     const now = new Date().getTime();
@@ -263,6 +264,26 @@ document.addEventListener("DOMContentLoaded", function () {
     height: auto !important;
     object-fit: contain !important;
   }
+  .ticket-slider {
+    position: relative !important;
+    min-height: 4.2rem !important;
+  }
+  .ticket-slide {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
+    transform: translateY(16px) !important;
+    pointer-events: none !important;
+  }
+  .ticket-slide.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  .ticket-slide-inner {
+    min-height: 4.2rem !important;
+  }
 }
 </style>
 </head>
@@ -299,27 +320,50 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="site-header-bottom">
                   <div class="site-header-tickets-slider">
               <div class="ticket-slider-container" aria-hidden="true" tabindex="-1">
+
     <p>Nukkumapaikat</p>
-                <p>PÄÄMÖKKI <span class="">96%</span></p>
+  
     <div class="slick-slider ticket-slider">
+      
                 <div class="ticket-slide">
             <div class="ticket-slide-inner">
               <div class="bar"><span class="bar-red" style="--bar-width: 96%"></span></div>
-              <p>VITUN KUUMA SAUNAMÖKKI <span class="">14%</span></p>
+              <p>Päämökki <span class="">96%</span></p>
             </div>
           </div>
         
                   <div class="ticket-slide">
             <div class="ticket-slide-inner">
               <div class="bar"><span class="bar-green" style="--bar-width: 14%"></span></div>
-              <p>ETUPIHA<span class="">5%</span></p>
+              <p>VITUN KUUMA SAUNAMÖKKI <span class="">14%</span></p>
             </div>
           </div>
-        
+      
                   <div class="ticket-slide">
             <div class="ticket-slide-inner" SIZE>
               <div class="bar"><span class="bar-green" style="--bar-width: 5%"></span></div>
+              <p>ETUPIHA<span class=""> 5%</span></p>
+            </div>
+          </div>
 
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-yellow" style="--bar-width: 62%"></span></div>
+              <p>OPELIKS <span class="">62%</span></p>
+            </div>
+          </div>
+
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-red" style="--bar-width: 100%"></span></div>
+              <p>vepen viekku <span class="">100%</span></p>
+            </div>
+          </div>
+
+          <div class="ticket-slide">
+            <div class="ticket-slide-inner">
+              <div class="bar"><span class="bar-yellow" style="--bar-width: 62%"></span></div>
+              <p>jos luet TÄMÄN HEITÄ SÄKKI <span class="">1%</span></p>
             </div>
           </div>
         
@@ -327,9 +371,101 @@ document.addEventListener("DOMContentLoaded", function () {
            </div>
             </div>
               <div class="site-header-tickets-link">
-            <a href="https://www.google.com/maps/place/Pekanrannantie+67,+52100+Mikkeli/@61.5657136,27.5701071,478m/data=!3m2!1e3!4b1!4m6!3m5!1s0x469a9d6cb020cabd:0xd25ad9ac4447c7fc!8m2!3d61.5657136!4d27.572682!16s%2Fg%2F11trgvk1x8?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" class="button is-style-gradient" role="button" target="_self">SIJAINTI</a>          </div>
+            <a href="https://www.google.com/maps/place/Pekanrannantie+67,+52100+Mikkeli/@61.5657136,27.5701071,478m/data=!3m2!1e3!4b1!4m6!3m5!1s0x469a9d6cb020cabd:0xd25ad9ac4447c7fc!8m2!3d61.5657136!4d27.572682!16s%2Fg%2F11trgvk1x8?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" class="button is-style-gradient" role="button" target="_self">SIJAINTI</a>
+          <a href="images/map.png" class="button is-style-gradient" role="button" target="_self">KARTTA</a>
+          <a href="" class="button is-style-gradient" role="button" target="_self">AIKATAULU</a>
+          <a href="#" id="myButton" class="button is-style-gradient" role="button" target="_self"></a>
+
+          
+<div id="toast1" style="
+  display:none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+">
+  JARRR, MIKÄ LIE TUOLLA HORISONTISSA PURJEHTII... JATKA PAINELEMISTA NIIN EHKÄ SE PALJASTUU!
+</div>
+
+<div id="toast2" style="
+  display:none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+">
+  JARRR, MÄÄRÄTÖN PAINELEMINEN PALJASTAA SALAISUUKSIA! JATKA PAINELEMISTA NIIN EHKÄ SE PALJASTUU!
+</div>
+
+<script>
+  let timesClicked = 0;
+
+  const secretButton = document.getElementById('myButton');
+  const toast1 = document.getElementById('toast1');
+  const toast2 = document.getElementById('toast2');
+
+  function showToast(toast) {
+    toast.style.display = 'block';
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 400);
+    }, 4000);
+  }
+
+
+  secretButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    timesClicked++;
+    secretButton.textContent = timesClicked;
+
+    if (timesClicked === 1) {
+      showToast(toast1);
+    }
+
+        if (timesClicked === 1500) {
+      showToast(toast2);
+    }
+
+
+    if (timesClicked === 3000) {
+      window.open('images/secret.png', '_blank');
+    }
+  });
+</script>
+          </div>
+            
                 <div class="menu-container">
+                  
             <span class="screen-reader-text">Menu</span>
+            
           </button>
           <div id="site-header-menu" class="site-header-menu">
             <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Main menu">
@@ -384,7 +520,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div id="countdown" data-time="2026-08-07T13:00:00+03:00">
         <div>
           <span class="days time"></span>
-          <span class="label">Päivää</span>
+          <span class="label">PÄIVÄÄ</span>
         </div>
         <div>
           <span class="hours time"></span>
@@ -532,7 +668,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     <header class="entry-header">
-              <h3 class="entry-title">kivikylän huiluntuhti</h3>
+              <h3 class="entry-title">kivikylÃ¤n huiluntuhti</h3>
           </header><!-- .entry-header -->
 
     
@@ -643,4 +779,18 @@ var screenReaderText = {"expand":"Open submenu","collapse":"Close submenu"};
 
 
 
-</body></html>
+<script>
+  (function() {
+    const slides = Array.from(document.querySelectorAll('.ticket-slider .ticket-slide'));
+    if (!slides.length) return;
+    let current = 0;
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === 0);
+    });
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000);
+  })();
+</script></body></html>
